@@ -14,6 +14,9 @@ function checkLogin() {
         window.location.href = '/templates/login.html';
     }
 }
+function profile() {
+    window.location.href = '/templates/profile.html';
+}
 // Display user profile information
 function displayProfileInfo(user) {
     const profileContainer = document.getElementById('profile');
@@ -34,21 +37,14 @@ function displayProfileInfo(user) {
     idElement.innerHTML = `<strong>ID:</strong> ${user.id}`;
     profileContainer.appendChild(idElement);
 
-    const logoutButton = document.createElement('button');
-    logoutButton.textContent = 'Logout';
-    logoutButton.addEventListener('click', logout);
-    profileContainer.appendChild(logoutButton);
-
-    const homeButton = document.createElement('button');
-    homeButton.textContent = 'Home';
-    homeButton.addEventListener('click', home);
-    profileContainer.appendChild(homeButton);
-
     const dayElement = document.createElement('div');
     dayElement.className = 'profile-day';
     dayElement.innerHTML = `<strong>Today is:</strong> ${todayName}`;
     profileContainer.appendChild(dayElement);
 
+}
+function TimeTable() {
+    window.location.href = '/templates/time_table.html';
 }
 
 const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];

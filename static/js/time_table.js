@@ -49,7 +49,8 @@ function displayTimetable(subjects) {
         subjectElement.innerHTML = `
             <strong>${index + 1}. ${subject.subject_name}</strong><br>
             Group: ${subject.group} | Level: ${subject.level}<br>
-            <button onclick="redirectToSubject('${subject.subject_name}', '${subject.group}', '${subject.level}')">View Details</button>
+            <button class="btn btn-info" onclick="redirectToSubject('${subject.subject_name} ', '${subject.group}', '${subject.level}')">View Details</button>
+            <hr>
         `;
 
         timetableContainer.appendChild(subjectElement);
@@ -68,21 +69,6 @@ function redirectToSubject(name, group, level) {
 const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
 if (currentUser && currentUser.id) {
     fetchTimetableByUserId(currentUser.id);
-}
-
-// Logout function
-function logout() {
-    sessionStorage.removeItem('currentUser');
-    window.location.href = '/templates/login.html';
-}
-
-// Navigation functions
-function home() {
-    window.location.href = '/';
-}
-
-function scanner() {
-    window.location.href = '/templates/scanner.html';
 }
 
 // Run the login check when the page loads

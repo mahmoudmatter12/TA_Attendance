@@ -66,8 +66,8 @@ async function searchStudent(ssn) {
                 const confirmMessage = document.createElement('div');
                 confirmMessage.innerHTML = `
                     <p>Level and group do not match. Do you want to add this student to the attendance anyway?</p>
-                    <button id="confirmAddBtn">Add</button>
-                    <button onclick="clearStudentInfo()">Cancel</button>
+                    <button class="btn btn-outline-success" id="confirmAddBtn">Add</button>
+                    <button class="btn btn-outline-danger" onclick="clearStudentInfo()">Cancel</button>
                 `;
                 resultDiv.appendChild(confirmMessage);
 

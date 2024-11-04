@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (user) {
                     sessionStorage.setItem('currentUser', JSON.stringify(user));
-                    window.location.href = '/';
+                    window.location.href = '/templates/profile.html';
                 } else {
                     alert('Invalid username or password');
                 }

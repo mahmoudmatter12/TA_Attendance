@@ -32,6 +32,9 @@ function logout() {
     sessionStorage.removeItem('currentUser');
     window.location.href = '/templates/login.html';
 }
+function time_table() {
+    window.location.href = '/templates/time_table.html';
+}
 
 // Run the login check when the page loads
 checkLogin();
