@@ -34,5 +34,29 @@
         "name": "mahmoud",
         "pass": "1234",
         "role": "student"
+    },
+    {
+        "id": 7,
+        "name": "seif",
+        "pass": "1911",
+        "role": "student"
+    },
+    {
+        "id": 8,
+        "name": "ahmed",
+        "pass": "1234",
+        "role": "student"
+    },
+    {
+        "id": 9,
+        "name": "mohamed",
+        "pass": "1234",
+        "role": "student"
+    },
+    {
+        "id": 10,
+        "name": "mohamed",
+        "pass": "1234",
+        "role": "student"
     }
 ]

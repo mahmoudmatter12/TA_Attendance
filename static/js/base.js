@@ -51,6 +51,7 @@ const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'fri
 const today = new Date().getDay();
 const todayName = daysOfWeek[today];
 
+checkLogin();
 
 
 
