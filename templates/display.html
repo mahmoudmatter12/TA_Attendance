@@ -39,7 +39,8 @@
                     <nav class="navbar bg-body-tertiary">
                         <div class="container-fluid">
                             <form class="d-flex" role="search" id="searchForm">
-                                <input class="form-control me-2" type="text" id="ssn" name="ssn" placeholder="Search with SSN"required >
+                                <input class="form-control me-2" type="text" id="ssn" name="ssn"
+                                    placeholder="Search with SSN" required>
                                 <button class="btn btn-outline-success" type="submit">Search</button>
                             </form>
                         </div>
@@ -54,16 +55,19 @@
                     <div id="alreadyAttendedMessage" style="display: none; color: red;">
                         This student has already attended.
                     </div>
-
-                    <button class="test btn btn-primary" onclick="TimeTable()">TimeTable</button>
-                    <br>
-                    <button class="test btn btn-success" onclick="downloadAndClear()">Download & Clear</button>
-                    <br>
-                    <button class="test btn btn-secondary" onclick="Clear()">Clear</button>
-                    <br>
-                    <button class="test btn btn-warning" onclick="profile()">Profile</button>
-                    <br>
-                    <button class="test btn btn-danger" onclick="logout()">Logout</button>
+                    <div class="card">
+                        <div class="card-body center">
+                            <button class="test btn btn-primary" onclick="TimeTable()">TimeTable</button>
+                            <br>
+                            <button class="test btn btn-success" onclick="downloadAndClear()">Download & Clear</button>
+                            <br>
+                            <button class="test btn btn-secondary" onclick="Clear()">Clear</button>
+                            <br>
+                            <button class="test btn btn-warning" onclick="profile()">Profile</button>
+                            <br>
+                            <button class="test btn btn-danger" onclick="logout()">Logout</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
