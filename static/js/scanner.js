@@ -2,7 +2,7 @@
 let attendanceData = [];
 let headers = [];
 
-document.getElementById('searchForm').addEventListener('submit', function(event) {
+document.getElementById('searchForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form submission
 
     const ssn = document.getElementById('ssn').value;
@@ -69,6 +69,7 @@ async function searchStudent(ssn) {
             const { level, group } = getURLParams();
             const studentLevel = studentData[headers.indexOf('level')]; // Assuming "level" column exists in headers
             const studentGroup = studentData[headers.indexOf('group')]; // Assuming "group" column exists in headers
+            
 
             if (studentLevel === level && studentGroup === group) {
                 // If levels and groups match, add to attendanceData
@@ -78,25 +79,32 @@ async function searchStudent(ssn) {
                 // Show student info and prompt professor to confirm addition
                 resultDiv.innerHTML = `<h2>Student Information</h2>`;
                 headers.forEach((header, index) => {
-                    resultDiv.innerHTML += `<p><strong>${header}:</strong> ${studentData[index]}</p>`;
+                    resultDiv.innerHTML += `
+                    <p><strong>${header}:</strong> ${studentData[index]}</p>
+                    `;
                 });
 
                 const confirmMessage = document.createElement('div');
                 confirmMessage.innerHTML = `
                     <p>Level and group do not match. Do you want to add this student to the attendance anyway?</p>
                     <button class="btn btn-outline-success" id="confirmAddBtn">Add</button>
-                    <button class="btn btn-outline-danger" onclick="clearStudentInfo()">Cancel</button>
+                    <button class="btn btn-outline-danger" onclick="clearStudentInfo()">Cancel</button><hr>
                 `;
                 resultDiv.appendChild(confirmMessage);
 
                 // Add event listener for the "Add" button
-                document.getElementById('confirmAddBtn').addEventListener('click', function() {
+                document.getElementById('confirmAddBtn').addEventListener('click', function () {
                     addStudentToAttendance(studentData);
                     displaySuccessCard();
                 });
             }
         } else {
-            resultDiv.innerHTML = '<p>No student found with that SSN.</p>';
+            resultDiv.innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    Student with SSN <strong>${ssn}</strong> not found in the database.
+                </div>
+            `;
+            document.getElementById('ssn').value = '';
         }
     } catch (error) {
         console.error('Error fetching or parsing CSV:', error);
@@ -116,6 +124,7 @@ function addStudentToAttendance(studentData) {
 
 function clearStudentInfo() {
     document.getElementById('studentInfo').innerHTML = '';
+    document.getElementById('ssn').value = '';
 }
 
 function updateAttendanceCount() {

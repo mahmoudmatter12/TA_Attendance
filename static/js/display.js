@@ -36,9 +36,10 @@ function displaySuccessCard() {
             successCard.style.display = 'none';
         }, 500);
     }, 500);
+
+    // Clear the input field
+    document.getElementById('ssn').value = '';
 }
-
-
 
 
 // Run display function when the page loads

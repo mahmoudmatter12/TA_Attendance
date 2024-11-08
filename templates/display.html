@@ -33,18 +33,23 @@
                             <form class="d-flex" role="search" id="searchForm">
                                 <input class="form-control me-2" type="text" id="ssn" name="ssn"
                                     placeholder="Search with SSN" required>
-                                <button class="btn btn-outline-success" type="submit">Add</button>
+                                <button class="btn btn-outline-success" style="margin-right: 6px;"
+                                    type="submit">Add</button>
+                                <button class="btn btn-outline-success" onclick="OpenScanner()">Scanner</button>
+                                <!-- todo put the scnnaer logic  -->
                             </form>
                         </div>
                     </nav>
+                    <hr>
 
 
                     <!--! Display student information -->
                     <div id="studentInfo">
                     </div>
 
+
                     <!--! Counter display for the number of students who attended -->
-                    <h3 class="Counter">Students Attended: <span id="attendanceCount">0</span></h3>
+                    <h3 class="Counter">Students Attended: <span id="attendanceCount" style="color: red;">0</span></h3>
 
 
                     <!--! Success message for successfully added students -->
@@ -58,9 +63,10 @@
                         </div>
                     </div>
 
-    
+
                     <!--! Warning message for already attended students -->
-                    <div id="alreadyAttendedMessage" class="card-container already_added_container" style="display: none;">
+                    <div id="alreadyAttendedMessage" class="card-container already_added_container"
+                        style="display: none;">
                         <div class="card-body">
                             <p class="text-center message already_added">
                                 Student already attended
@@ -70,18 +76,63 @@
                         </div>
                     </div>
 
+
+                    <!--! Error message for invalid SSN -->
+                    <div id="invalidSSNMessage" class="card-container invalid_ssn_container" style="display: none;">
+                        <div class="card-body">
+                            <p class="text-center message invalid_ssn">
+                                Invalid SSN
+                                <br>
+                                <span class="checkmark">&#10006;</span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+                    <!--* Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Clear Attendance</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to clear the attendance?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="Clear()"
+                                        data-bs-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <!--! buttons -->
                     <div class="card">
                         <div class="card-body center">
-                            <button class="test btn btn-primary" onclick="TimeTable()">TimeTable</button>
-                            <br>
                             <button class="test btn btn-success" onclick="downloadAndClear()">Download & Clear</button>
                             <br>
-                            <button class="test btn btn-secondary" onclick="Clear()">Clear</button>
+                            <button type="button" class="test btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Clear Attendance
+                            </button>
                             <br>
                             <button class="test btn btn-warning" onclick="profile()">Profile</button>
                             <br>
+                            <button class="test btn btn-primary" onclick="TimeTable()">TimeTable</button>
+                            <br>
                             <button class="test btn btn-danger" onclick="logout()">Logout</button>
+                            <br>
+
                         </div>
                     </div>
                 </div>
