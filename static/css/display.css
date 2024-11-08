@@ -16,3 +16,39 @@ body{
         text-align: left;
     }
 }
+
+
+.card-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #f0f8ff; /* Light background color */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 2px solid #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Card message text */
+.message {
+    color: #4caf50; /* Green color */
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Checkmark icon styling */
+.checkmark {
+    font-size: 80px;
+    display: block;
+    margin-top: 10px;
+    color: #4caf50;
+}

@@ -56,6 +56,7 @@ async function searchStudent(ssn) {
             if (studentLevel === level && studentGroup === group) {
                 // If levels and groups match, add to attendanceData
                 addStudentToAttendance(studentData);
+                displaySuccessCard();
             } else {
                 // Show student info and prompt professor to confirm addition
                 resultDiv.innerHTML = `<h2>Student Information</h2>`;
@@ -74,6 +75,7 @@ async function searchStudent(ssn) {
                 // Add event listener for the "Add" button
                 document.getElementById('confirmAddBtn').addEventListener('click', function() {
                     addStudentToAttendance(studentData);
+                    displaySuccessCard();
                 });
             }
         } else {

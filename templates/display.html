@@ -46,10 +46,28 @@
                         </div>
                     </nav>
 
-                    <div id="studentInfo"></div>
+                    <div id="studentInfo">
+                    </div>
 
                     <!-- Counter display for the number of students who attended -->
-                    <p>Students Attended: <span id="attendanceCount">0</span></p>
+                    <h3 class="Counter">Students Attended: <span id="attendanceCount">0</span></h3>
+
+
+                    <!-- Success message for successfully added students -->
+                    <div class="card-container" id="successfully_added" style="display: none;">
+                        <div class="card-body">
+                            <p class="text-center message">
+                                Student added successfully
+                                <br>
+                                <span class="checkmark">&#10004;</span>
+                            </p>
+                        </div>
+                    </div>
+
+    
+
+
+
 
                     <!-- Warning message for already attended students -->
                     <div id="alreadyAttendedMessage" style="display: none; color: red;">

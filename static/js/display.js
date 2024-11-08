@@ -21,5 +21,23 @@ function displaySubjectDetails() {
     `;
 }
 
+// Display succssfully_add card when i click on the add button for 1 second
+function displaySuccessCard() {
+    const successCard = document.getElementById('successfully_added');
+    successCard.style.display = 'flex';
+    successCard.style.opacity = '1';
+    successCard.style.transform = 'translate(-50%, -50%)';
+
+    // Hide after 1 second
+    setTimeout(() => {
+        successCard.style.opacity = '0';
+        successCard.style.transform = 'translate(-50%, -60%)';
+        setTimeout(() => {
+            successCard.style.display = 'none';
+        }, 500);
+    }, 500);
+}
+
+
 // Run display function when the page loads
 displaySubjectDetails();
