@@ -17,6 +17,23 @@ function getURLParams() {
     };
 }
 
+function displayAllreadyAdded() {
+    const successCard = document.getElementById('alreadyAttendedMessage');
+    successCard.style.display = 'flex';
+    successCard.style.opacity = '1';
+    successCard.style.transform = 'translate(-50%, -50%)';
+
+    // Hide after 1 second
+    setTimeout(() => {
+        successCard.style.opacity = '0';
+        successCard.style.transform = 'translate(-50%, -60%)';
+        setTimeout(() => {
+            successCard.style.display = 'none';
+        }, 500);
+    }, 500);
+}
+
+
 async function searchStudent(ssn) {
     // Hide the "already attended" message each time a new search is attempted
     document.getElementById('alreadyAttendedMessage').style.display = 'none';
@@ -25,7 +42,7 @@ async function searchStudent(ssn) {
     const alreadyExists = attendanceData.some(row => row[0] === ssn);
     if (alreadyExists) {
         // Show the warning message if the student has already attended
-        document.getElementById('alreadyAttendedMessage').style.display = 'block';
+        displayAllreadyAdded();
         return;
     }
 

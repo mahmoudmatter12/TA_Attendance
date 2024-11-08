@@ -39,5 +39,7 @@ function displaySuccessCard() {
 }
 
 
+
+
 // Run display function when the page loads
 displaySubjectDetails();

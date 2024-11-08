@@ -27,35 +27,29 @@
                 <div class="card-body">
                     <h1>Student Scanner</h1>
 
-
-                    <!-- <form id="searchForm">
-                        <label for="ssn">SSN:</label>
-                        <input type="text" id="ssn" name="ssn" required>
-                        <button class="btn btn-outline-primary" type="submit">Submit</button>
-                    </form> -->
-
-
-
+                    <!--! Search form to search for students by SSN -->
                     <nav class="navbar bg-body-tertiary">
                         <div class="container-fluid">
                             <form class="d-flex" role="search" id="searchForm">
                                 <input class="form-control me-2" type="text" id="ssn" name="ssn"
                                     placeholder="Search with SSN" required>
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                <button class="btn btn-outline-success" type="submit">Add</button>
                             </form>
                         </div>
                     </nav>
 
+
+                    <!--! Display student information -->
                     <div id="studentInfo">
                     </div>
 
-                    <!-- Counter display for the number of students who attended -->
+                    <!--! Counter display for the number of students who attended -->
                     <h3 class="Counter">Students Attended: <span id="attendanceCount">0</span></h3>
 
 
-                    <!-- Success message for successfully added students -->
+                    <!--! Success message for successfully added students -->
                     <div class="card-container" id="successfully_added" style="display: none;">
-                        <div class="card-body">
+                        <div class="card-body ">
                             <p class="text-center message">
                                 Student added successfully
                                 <br>
@@ -65,14 +59,18 @@
                     </div>
 
     
-
-
-
-
-                    <!-- Warning message for already attended students -->
-                    <div id="alreadyAttendedMessage" style="display: none; color: red;">
-                        This student has already attended.
+                    <!--! Warning message for already attended students -->
+                    <div id="alreadyAttendedMessage" class="card-container already_added_container" style="display: none;">
+                        <div class="card-body">
+                            <p class="text-center message already_added">
+                                Student already attended
+                                <br>
+                                <span class="checkmark">&#9888;</span>
+                            </p>
+                        </div>
                     </div>
+
+                    <!--! buttons -->
                     <div class="card">
                         <div class="card-body center">
                             <button class="test btn btn-primary" onclick="TimeTable()">TimeTable</button>
