@@ -213,6 +213,7 @@ document.getElementById('qr-reader-link').addEventListener('click', function (ev
     scanner.addListener('scan', function (content) {
         document.getElementById('ssn').value = content;
         document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+        document.getElementById('ssn').value = '';
         video.style.display = 'none';
     });
 
@@ -222,7 +223,7 @@ document.getElementById('qr-reader-link').addEventListener('click', function (ev
             if (backCamera) {
                 scanner.start(backCamera);
                 // Flip the camera preview
-                // video.style.transform = 'scaleX(1)';
+                video.style.transform = 'scaleX(1)';
             } else {
                 alert('Back camera not found. Please use a device with a back camera.');
                 video.style.display = 'none';
