@@ -222,7 +222,7 @@ document.getElementById('qr-reader-link').addEventListener('click', function (ev
             if (backCamera) {
                 scanner.start(backCamera);
                 // Flip the camera preview
-                video.style.transform = 'scaleX(1)';
+                // video.style.transform = 'scaleX(1)';
             } else {
                 alert('Back camera not found. Please use a device with a back camera.');
                 video.style.display = 'none';
@@ -233,7 +233,6 @@ document.getElementById('qr-reader-link').addEventListener('click', function (ev
         }
     }).catch(function (e) {
         console.error('Error starting camera:', e);
-        alert('برجاء التاكد بمسح خانة ادخال الرقم القومي من خلال زر المسح');
         video.style.display = 'none';
     });
 });
