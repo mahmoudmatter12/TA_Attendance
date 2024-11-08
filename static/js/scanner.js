@@ -9,6 +9,11 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     searchStudent(ssn);
 });
 
+
+// Load user role from session storage
+const currentUser = sessionStorage.getItem('currentUser');
+
+
 function getURLParams() {
     const params = new URLSearchParams(window.location.search);
     return {
@@ -47,51 +52,67 @@ async function searchStudent(ssn) {
     }
 
     try {
-        // Fetch the CSV file
-        const response = await fetch('/Data/students.csv');
-        const csvData = await response.text();
-
-        // Parse CSV data
-        const students = csvData.split('\n').map(line => line.split(','));
-
-        // Extract headers from the first row
+        // Fetch the JSON file
+        const response = await fetch('/Data/students.json');
+        const students = await response.json();
+    
+        // Extract specific headers from the first student object
         if (attendanceData.length === 0 && students.length > 0) {
-            headers = students[0];
+            headers = ['group', 'section', 'level', 'name', 'ssn', 'student_id'];
         }
-
-        const studentData = students.find(row => row[0] === ssn); // Assuming SSN is in the first column
-
+    
+        // Find the student based on SSN
+        const studentData = students.find(student => student.ssn === ssn);
+    
         const resultDiv = document.getElementById('studentInfo');
         resultDiv.innerHTML = '';
-
+    
         if (studentData) {
-            // Get level and group from URL
+            // Get level and group from URL parameters
             const { level, group } = getURLParams();
-            const studentLevel = studentData[headers.indexOf('level')]; // Assuming "level" column exists in headers
-            const studentGroup = studentData[headers.indexOf('group')]; // Assuming "group" column exists in headers
-            
+            const studentLevel = studentData.level; // Access the "level" property directly
+            const studentGroup = studentData.group; // Access the "group" property directly
+            // !
+            if(currentUser.role === 'prof'){}
+            // !
 
-            if (studentLevel === level && studentGroup === group) {
+            if (attendanceData.some(student => student.ssn === ssn)) {
+                displayAllreadyAdded();
+                return;
+            }
+
+            if (level && group && studentLevel == level && studentGroup == group) {
                 // If levels and groups match, add to attendanceData
                 addStudentToAttendance(studentData);
                 displaySuccessCard();
             } else {
                 // Show student info and prompt professor to confirm addition
                 resultDiv.innerHTML = `<h2>Student Information</h2>`;
-                headers.forEach((header, index) => {
-                    resultDiv.innerHTML += `
-                    <p><strong>${header}:</strong> ${studentData[index]}</p>
-                    `;
-                });
-
-                const confirmMessage = document.createElement('div');
-                confirmMessage.innerHTML = `
-                    <p>Level and group do not match. Do you want to add this student to the attendance anyway?</p>
-                    <button class="btn btn-outline-success" id="confirmAddBtn">Add</button>
-                    <button class="btn btn-outline-danger" onclick="clearStudentInfo()">Cancel</button><hr>
+    
+                resultDiv.innerHTML = `
+                    <div class="card shadow-lg mb-4" style="max-width: 500px; margin: auto;">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Student Information</h2>
+                            <p><strong>Name:</strong> ${studentData.name}</p>
+                            <p><strong>Student ID:</strong> ${studentData.student_id}</p>
+                            <p><strong>Group:</strong> ${studentData.group}</p>
+                            <p><strong>Section:</strong> ${studentData.section}</p>
+                            <p><strong>Level:</strong> ${studentData.level}</p>
+                            <p><strong>SSN:</strong> ${studentData.ssn}</p>
+                            <hr>
+    
+                            <p class="alert alert-warning" role="alert">
+                                Level and group do not match. Do you want to add this student to the attendance anyway?
+                            </p>
+    
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-success me-3" id="confirmAddBtn">Add</button>
+                                <button class="btn btn-outline-danger" onclick="clearStudentInfo()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                resultDiv.appendChild(confirmMessage);
-
+    
                 // Add event listener for the "Add" button
                 document.getElementById('confirmAddBtn').addEventListener('click', function () {
                     addStudentToAttendance(studentData);
@@ -107,7 +128,7 @@ async function searchStudent(ssn) {
             document.getElementById('ssn').value = '';
         }
     } catch (error) {
-        console.error('Error fetching or parsing CSV:', error);
+        console.error('Error fetching or parsing JSON:', error);
     }
 }
 
@@ -138,9 +159,21 @@ function downloadAndClear() {
         return;
     }
 
-    // Create workbook and add attendance data with headers
+    // Create a new array that only includes the desired fields for each student
+    const filteredAttendanceData = attendanceData.map(student => [
+        student.name,
+        student.group,
+        student.section,
+        student.level,
+        student.student_id
+    ]);
+
+    // Add headers for the selected fields
+    const filteredHeaders = ['Name', 'Group', 'Section', 'Level', 'Student ID'];
+
+    // Create a workbook and add filtered attendance data with headers
     const wb = XLSX.utils.book_new();
-    const worksheetData = [headers].concat(attendanceData); // Add headers as the first row
+    const worksheetData = [filteredHeaders].concat(filteredAttendanceData); // Add filtered headers as the first row
     const ws = XLSX.utils.aoa_to_sheet(worksheetData);
     XLSX.utils.book_append_sheet(wb, ws, 'Attendance');
 
@@ -153,6 +186,7 @@ function downloadAndClear() {
     alert('Data downloaded and cleared');
 }
 
+
 function Clear() {
     document.getElementById('ssn').value = '';
     document.getElementById('studentInfo').innerHTML = '';
@@ -160,3 +194,46 @@ function Clear() {
     document.getElementById('alreadyAttendedMessage').style.display = 'none';
     attendanceData = [];
 }
+
+
+// QR Code Reader handling
+document.getElementById('qr-reader-link').addEventListener('click', function (event) {
+    event.preventDefault();
+    const video = document.getElementById('preview');
+    video.style.display = 'block';
+
+    if (typeof Instascan === 'undefined') {
+        console.error('Instascan library is not loaded.');
+        alert('QR Code scanning is not available. Please check if the Instascan library is loaded.');
+        video.style.display = 'none';
+        return;
+    }
+
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+        document.getElementById('ssn').value = content;
+        document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+        video.style.display = 'none';
+    });
+
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            const backCamera = cameras.find(camera => camera.name.toLowerCase().includes('back') || camera.name.toLowerCase().includes('environment'));
+            if (backCamera) {
+                scanner.start(backCamera);
+                // Flip the camera preview
+                video.style.transform = 'scaleX(1)';
+            } else {
+                alert('Back camera not found. Please use a device with a back camera.');
+                video.style.display = 'none';
+            }
+        } else {
+            alert('No cameras found or access denied. Please allow camera access.');
+            video.style.display = 'none';
+        }
+    }).catch(function (e) {
+        console.error('Error starting camera:', e);
+        alert('برجاء التاكد بمسح خانة ادخال الرقم القومي من خلال زر المسح');
+        video.style.display = 'none';
+    });
+});

@@ -58,3 +58,12 @@ body{
     margin-top: 10px;
     color: #4caf50;
 }
+
+
+video {
+    display: none;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 15px;
+  }
+  

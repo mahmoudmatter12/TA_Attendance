@@ -2,62 +2,80 @@
     {
         "gmail": "abanobemad447@gmail.com",
         "name": "ابانوب عماد عباد ",
-        "ssn": "30401140103976",
+        "ssn": "1",
         "student_id": "231051001",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "gamil.hima@gmail.com",
         "name": "ابراهيم احمد محمد الجميل",
-        "ssn": "30509060104977",
+        "ssn": "2",
         "student_id": "231051003",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "ibrahimelnakib05@gmail.com",
         "name": "ابراهيم احمد محمد النقيب ",
-        "ssn": "30509230101919",
+        "ssn": "3",
         "student_id": "231051004",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "ibraheemhussein9@gmail.com",
         "name": "ابراهيم حسين سيد محمد ",
-        "ssn": "30506012100537",
+        "ssn": "4",
         "student_id": "231051006",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "hemajrm416@gmail.com",
         "name": "إبراهيم حسين علي محمد",
-        "ssn": "30508250102036",
+        "ssn": "5",
         "student_id": "231051007",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"2"
     },
     {
         "gmail": "ihamdy719@gmail.com",
         "name": "ابراهيم حمدي ابراهيم محمد ",
-        "ssn": "30505150103613",
+        "ssn": "6",
         "student_id": "231051008",
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"2"
     },
     {
         "gmail": "amomtaz237@gmail.com",
@@ -67,7 +85,10 @@
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "ahmedibrahim22448899@gmail.com",
@@ -77,7 +98,10 @@
         "department": "Data-science",
         "grade": "Level-2",
         "payment_state": "True",
-        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات"
+        "Faculty": "كلية علوم الحاسب و تكنولوجيا المعلومات",
+        "group" :"1",
+        "section":"1",
+        "level":"1"
     },
     {
         "gmail": "ai7842387@gmail.com",
